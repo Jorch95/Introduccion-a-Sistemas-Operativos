@@ -1,0 +1,111 @@
+Trabajo Practico N°1 - Introduccion a GNU/Linux
+==================================================
+
+1) Características de GNU/Linux
+a.- *Es un Sistema Operativo tipo Unix, pero libre.
+	*S.O Gratuito y de libre distribución.
+	*Es de código abierto, lo que nos permite estudiarlo, personalizarlo, aprovecharnos de la documentacion, etc.
+b.-	Otros S.O conocidos son: Windows, Unix, Macintosh. Ninguno de estos sistemas es libre, por lo cual hay que pagar por ellos. GNU/Linux está basado en Unix al igual que Macintosh. Windows tiene otro tipo de arquitectura.
+c.-GNU= GNU No es Unix. El sistema GNU fue diseñado para ser totalmente compatible con Unix.
+d.-El proyecto GNU,que aun no esta finalizado, fue iniciado por Richard Stallman en 1983 con el fin de crear un Unix libre. Para asegurar que el mismo sea libre, se necesitó crear un marco regulatorio conocido como GPL (General Public License). EN 1985, Stallman crea la FSF (Free Software Foundation), con el fin de financiar el proyecto. 
+	Pero lo que hacia falta mas que nada al proyecto, era un núcleo (Kernel). Linus Trovalds ya venia trabajando desde 1991 en un Kernel denominado Linux, que se distrubuia bajo la licencia GPL. En 1992, Torvalds y Stallman deciden fusionar ambos proyectos, y es alli donde nace GNU/Linux.
+e.-Multitarea es un término que se refiere a la funcionalidad de un S.O llevar a cabo múltiples procesos simultáneamente, sin pérdida de funcionamiento obviamente. Sí, GNU/Linux hace uso de ésta funcionalidad. 
+f.- POSIX: es el acrónimo de Portable Operating System Interface, y X viene de UniX.
+
+==================================================
+
+2)Distribuciones de GNU/Linux
+a.- Una distribución es una customizacion de GNU/Linux formada por una version de kernel y determinados programas con sus configuraciones. Algunas distribuciones son: Debian, Red Hat, Ubuntu, SUSE.
+
+c.-Lihuen es la distribucion GNU/Linux de la Facultad de Informatica de la UNLP, que está basada en Debian.
+	El propósito de Lihuen es producir una distribucion GNU/Linux para entornos educativos y oficinas, orientada a usuarios con poca o ninguna experiencia en el uso de GNU/Linux.
+	La cronologia la dejo para despues...
+==================================================
+
+3)Estructura de GNU/Linux
+Las tres características principales de GNU/Linux son:
+	*Permite el manejo de Usuarios y permisos.
+	*Cada directorio puede estar un una particion diferente.
+	*Es de código abierto.
+La estructura básica del S.O.-Núcleo: También es conocido como Kernel. Ejecuta programas y gestiona dispositivos de hardware. Sus funciones mas importantes son la administracion de memoria y CPU.
+
+==================================================
+
+4)Kernel
+a.-Es el Núcleo del Sistema Operativo, su estructura básica. En 1991 Linus Torvalds inicia la programacion de un Kernel Linux basado en Minix (Clon de Unix, desarrollado por Tanenbaum). El 5 de Octubre de 1991 de anuncia la primera version oficial de Linux (0.02). En 1992 se combina su desarrollo con GNU.
+b.-Sus funciones principales son la administracion de memoria y CPU. Es el encargado de que el software y el harsware puedan trabajar juntos.
+c.-La versión actual del Kernel es la 4.1.6. A fines de 2003 de lanza la version 2.6. Esta versión tuvo muchas mejoras para el SO, dentro de las que se destacan soporte de hilos, mejoras en la planificacion y soporte de nuevo hardware.
+	-Modo de Versionar: A.B.C.[D]:
+		*A: Denota Version. Cambia con menor frecuencia.
+		*B: Denota Mayor revision. Antes de la versión 2.6, los numeros impares indicaban desarrollo, los pares produccion.
+		*C: Denota Menor revision. Solo cambia cuando hay nuevos drivers o características.
+		*D: Cambia cuando se corrige un grave error sin agregar nueva funcionalidad.
+d.-
+f.-Como ya hemos visto el kernel de Linux es un sistema monolítico es decir que todos sus componentes están en un solo paquete y este establece procedimiento de llamadas hacia el resto de los procesos del sistema corriendo en un área restringida el cual estos no pueden acceder directamente.
+
+
+==================================================
+
+5)Intérprete de comandos
+a.-Tambien conocido como CLI(Command Line Interface).
+b.-Sus funciones son:
+	*Ejecuta programas a partir del ingredo de comandos.
+	*Es un modo de comunicacion entre el usuario y el SO.
+c.-En GNU/Linux posee: Bourne Shell(sh), Korn Shell(ksh), Bourne Again Shell(bash).
+d.-Los comandos internos al intérprete vienen con el intérprete y estan ubicados en la ruta del Shell(/bin/bash por ejemplo). Los comandos externos de la Shell se ubican en la carpeta /bin.
+e.-
+f.-Si, es posible definir un shell distinto para cada usuario. Se define desde el shell actual con el comando chshell. Si, cualquier usuario puede realizar esta tarea.
+
+==================================================
+
+6)Sistema de Archivos (File System)
+a.-El Siste de Archivos o File System organiza la forma en que se almacenan los archivos en dispositivos de almacenamiento.
+b.-El Sistema de archivos adoptado por GNU/Linux es el Extended(ext3, ext4, etc).
+c.-Sí, es posible visualizar particiones del tipo FAT y NTFS en GNU/Linux.
+d.-Estructura básica de los File System de GNU/Linux: 
+	*/ Tope de la estructura de directorios
+	*/home Se almacenan archivos de Usuario.
+	*/var Informacion que varia de tamaño (logs, BD, spools).
+	*/etc Archivos de configuracion.
+	*/bin Archivos binarios y ejecutables.
+	*/dev Enlace a dispositivos.
+	*/usr Aplicaciones de usuario.
+La sigla FHS hace referencia a: File Hierarchy Standard.
+
+==================================================
+
+7)Particiones
+a.-Una partición es una forma de dividir lógicamente el disco físico.
+	Tipo de Particiones:
+		*Primaria: División cruda del disco (Puede haber hasta 4 por disco). Se almacena informacion de la misma en el MBR.
+		*Extendida: Sirve para contener unidades lógicas en su interior. Solo puede existir una particion de este tipo por disco. No se define un tipo de FS directamente sobre ella.
+		*Lógica: Ocupa la totalidad o parte de la partición extendida y se le define un tipo de FS directamente.
+	Ventajas de particionar el disco:
+		*Se puede evitar la pérdida de informarcion al subdividir eficientemente la informacion en particiones. Por ejemplo: una partición para los archivos del Sistema Operativo, otra para los datos del usuario, otra para aplicaciones, etc.
+		*Se pueden tener varios SO cargados en un mismo disco físico.
+	Desventajas de particionar discos:
+
+c.- Para instalar GNU/Linux, la cantidad necesaria de particiones para instalarlo, como mínimo es una. Pero es recomendable hacer al menos 2 particiones. Una que contenga el Sistema Operativo (/) y otra para el SWAP. En definitiva 2 particiones...
+	Instalando GNU/Linux:
+		*/dev/hda1: DOS con Windows (fat32)
+		*/dev/hda2: /boot
+		*/dev/hda3: / (ext3 ó ext4) (Partición Primaria)
+		*/dev/hda4: Área de Intercambio (SWAP) (Partición lógica)
+
+e.-Para particionar discos existen dostwares destructivos y no-destructivos.
+	Destructivos: Permiten crear y eliminar particiones. Por ejemplo fdisk.
+	No-Destructivos: Permiten crear, eliminar y modificar particiones. Por ejemplo: fips, gparted.
+
+8)Arranque de un Sistema Operativo
+a.- BIOS: Basic Input/Output System (Sistema Básico de Entrada Salida). Es un firmware que localiza el SO en la memoria RAM, brinda una comunicación de muy bajo nivel y configuración del Hardware de nuestra computadora. El BIOS contiene las instrucciones más elementales para que puedan funcionar y desempeñarse adecuadamente, pueden incluir rutinas básica de control de los dispositivos.
+
+b.- UEFI: Unified Extensible Firmware Interface. Alianza entre varias compañías con el objetivo de modernizar el proceso de arranque.
+	Su función:
+		*Define la ubicación del gestor de arranque.
+		*Define la interfaz entre el gestor de arranque y el firmware.
+		*Expone información en trablas en memoria para los gestores de arranque con:
+			*Información de hardware y configuración del firmware
+			*Punteros a rutinas que implementan los servicios que el firmware ofrece a los bootloaders u o tras aplicaciones UEFI.
+			*Provee un BootManager para cargar aplicaciones UEFI (Ej: GRUB) y drivers desde un UEFI  File System.
+
+c.-
