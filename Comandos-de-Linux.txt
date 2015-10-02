@@ -1,0 +1,110 @@
+Comandos de Linux
+============================================================
+
+*cd(change directory): cd <ruta> : Cambiar de directorio.
+
+*mkdir(make directory): mkdir <ruta> : Crea directorios.
+
+*rmdir(remove dir):rmdir <ruta> :  Permite eliminar directorios vacios.
+
+*mount(): Monta dispositivos de almacenamiento en particiones indicadas.
+
+*du(): Muestra el uso de disco. En general los archivos se almacenan en bloques de 4Kb. Si un archivo es menor seguirá ocupando 4Kb de espacio en disco. du indica la ocupación real.
+
+*df(disk free): Muestra el espacio libre que queda en disco. Es útil para scrpts automatizados.
+	*df pydf : pydf(python disk free) realiza la misma tarea pero ordenando en columnas y con colores. Es mejor para ver el consumo manualmente.
+
+*ln [opciones] origen [destino] : establece enlaces entre archivos. Puede ser un enlace rígido o simbólico.
+	* ln -d : Permite al super-usuario hacer enlaces rígidos a directorios.
+	* ln -s : Crear enlace simbólico.
+	* ln -f : Borrar los archivos de destino que ya existen.
+
+*ls [opciones] [archivo...] : sirve para listar archivos. Si se ejecuta sin argumentos, dará como resultado un listado de todos los archivos del directorio donde el usuario está posicionado.
+	* ls -a : Lista todos los archivos, incluyendo aquellos que comienzan con un '.' . 
+	* ls -d : Lista el nombre del directorio en vez de los archivos contenidos en él.
+	* ls -l : Lista los archivos con mucho mas detalle, especificando para cada archivo sus permisos, el número de enlaces rígidosm el nombre del propietario, el grupo al que pertenece, el tamaño e bytes y la fecha de la última modificación.
+	* ls -r : Invierte el orden de listado de los archivos contenidos en él.
+	* ls -s : Muestra el tamaño de cada archivo en bloques de 1024 bytes a la izquierda del nombre.
+	* ls -h : Muestra los tamaños de archivo en términos de kilobytes, megabytes, etc.
+	* ls -t : Lista los archivos ordenados por el tiempo de modificacion en vez de ordenarlos alfabéticamente.
+	* ls -A : Lista todos los archivos excepto el '.' y '..' . 
+	* ls -R : Lista los contenidos de todos los directorios recursivamente.
+	* ls -S : Ordena el listado por el tamaño de los archivos.
+
+*cp [opciones] archivo-origen...  directorio-destino : Se utiliza para copiar archivos.
+	* cp -f : Borrar los archivos de destino ya existentes.
+	* cp -d : Copiar los enlaces simbólicos tal cual son, en lugar de copiar los archivos a los que apuntan.
+	* cp -p : Preservar los permisos, el usuario y elg rupo del archivo a copiar.
+	* cp -R : Copiar directorios recursivamente.
+	* cp -a : Equivalente a utilizar las opciones -dpR.
+	* cp -u : No copia un archivo si en el destino ya existe tal archivo, y éste tiene la fecha de modificacion igual o más reciente.
+	* cp -v : Da información en pantalla sobre los archivos que se van copiando.
+
+*mv [opcion...] origen... destino : Este comando se usa tanto para mover archivos como para renombrarlos.
+	* mv -f : Borrar los archivos de destino existentes sin preguntar al usuario.
+	* mv -i : Pregunta por cada archivo a sobreescribir antes de hacerlo.
+	* mv -v : Muestra el nombre de cada archivo a ser movido.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

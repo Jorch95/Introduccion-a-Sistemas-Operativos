@@ -1,0 +1,28 @@
+Introducción a Sistemas Operativos - Trabajo Practico N°2
+============================================================
+
+1)Editor de Textos
+
+a.- Editores de Texto que se pueden lanzar desde la línea de comandos son por ejemplo:
+	*Vim
+	*Emacs
+	*Gedit
+
+b.-
+
+c.-Los modos de operación que posee el editor de textos vi, son:
+	*Normal
+	*Insert
+	*Visual
+	*Command-Line
+	*Select
+	*Ex-mode
+
+d.- Los comandos mas comunes para vim son:
+	*:q	*:wq	*:e	*$	*dd	*yy	
+
+============================================================
+
+2)Proceso de Arranque SystemV
+
+a.-

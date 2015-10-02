@@ -103,9 +103,38 @@ b.- UEFI: Unified Extensible Firmware Interface. Alianza entre varias compañía
 	Su función:
 		*Define la ubicación del gestor de arranque.
 		*Define la interfaz entre el gestor de arranque y el firmware.
-		*Expone información en trablas en memoria para los gestores de arranque con:
+		*Expone información en tablas en memoria para los gestores de arranque con:
 			*Información de hardware y configuración del firmware
 			*Punteros a rutinas que implementan los servicios que el firmware ofrece a los bootloaders u o tras aplicaciones UEFI.
 			*Provee un BootManager para cargar aplicaciones UEFI (Ej: GRUB) y drivers desde un UEFI  File System.
 
-c.-
+c.-MBR: Master Boot Record (Registro de arranque principal) es el primer sector (sector 0) de un disco duro. Se emplea para el arranque del SO con bootstrap.
+	El tamaño del MBR coincide con el tamaño estándar del sector (512 bytes). Los primeros byte corresponden al Master Boot Code (MBC), a partir del byte 446 está la tabla de particiones que es de 64 byte, y al final existen 2 bytes libres.
+	El MBC es un pequeño código que permite arrancar el SO. La última acción del BIOS es leer el MBC, lo lleva a memoria y lo ejecuta.
+
+d.- GPT: GUID Partition Table. Es un estándar para la colocación de particiones en un disco duro. Es parte del estándar EFI de Intel. La GPT sustituye al MBR usado con el BIOS.
+	GPT usa modo de direccionamiento lógico (LBA, Logical Block Addressing). La información de MBR heredado está almacenado en el LBA 0, la cabecera GPT está en LBA 1, y la tabla de particiones en sí en los bloques sucesivos.
+
+e.-Gestores de Arranque: Permiten la carga del SO. Se ejecuta luego del código de la BIOS.
+	Existen 2 modos de instalación:
+		*En el MBR
+		*En el sector de arranque de la partición raíz o activa.
+	Algunos Gestores conocidos: GRUB, LIL, GAG, YaST, etc.
+
+f.-Proceso de Arranque: Se denomina Bootstrap(carga). 
+	*En las arquitecturas x86, el BIOS es el responsable de iniciar la carga del SO a través del MBC (En otras arquitecturas también existe, pero se lo conoce con otro nombre)
+	*Carga el programa de booteo (desde el MBR)
+	*El gestor de arranque lanzado desde el MBC carga el Kernel
+		*Prueba e inicializa los dispositivos
+		*Luego pasa el control al proceso init.
+	*El proceso de arranque se ve como una serie de pequeños programas de ejecución encadenada.
+g.-
+
+h.-
+
+i.-Sí, es posible tener en nuestra PC instalado GNU/Linux y otro Sistema Operativo. 
+	Básicamente se hacen particiones en el disco para designar que espacio ocupará cada Sistema. Una vez particionado el disco e instalado los Sistemas Operativos, en el momento que se le da arranque a la PC, hay una de las particiones que se designa como booteo, en la cual va a estar presente algún Gestor de Arranque para poder elegir el Kernel que se desea cargar, osea que elegimos el SO que queremos iniciar.
+
+==================================================
+
+9)Archivos
