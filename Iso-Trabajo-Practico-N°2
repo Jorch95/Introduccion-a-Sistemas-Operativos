@@ -1,4 +1,4 @@
-Introducción a Sistemas Operativos - Trabajo Practico N°2
+﻿Introducción a Sistemas Operativos - Trabajo Practico N°2
 ============================================================
 
 1)Editor de Textos
@@ -25,4 +25,208 @@ d.- Los comandos mas comunes para vim son:
 
 2)Proceso de Arranque SystemV
 
-a.-
+a.- Proceso SystemV:
+	*Se empieza a ejecutar el código del BIOS.
+	*El BIOS ejecuta el POST
+	*EL BIOS lee el sector de arranque (MBR)
+	*Se el gestor de arranque(MBC)
+	*El bootloader carga el jernel y el initrd.
+	*Se monta el initrd como sistema de archivos raís y se inician componentes esenciales (ej: scheduler).
+	*Se ejecuta el proceso init y se desmonta en initrd.
+	*Se lee el /etc/inittab .
+	*Se ejecutan los scripts apuntados por el runlevel 1.
+	*El final del Runlevel 1 le que va al runlevel por defecto.	
+	*Se ejecutam los scripts apuntados por el Runlevel por defecto.
+	*El sistema está listo para usarse.
+
+b.- Proceso Init: Es el primer proceso a nivel usuario que ejecuta el kernel de linux. 
+	La ubicación correcta para init es /sbin/init . Normalmente init realiza el chequeo de los sistemas de archivos, borra el contenido de /tmp, inicia la ejecución de varios servicios.
+	Init también se encarga de adoptar procesos huérfanos: cuando un proceso inicia un proceso hijo y muere antes que este, el proceso hijo pasa a ser un hijo de init inmediátamente.
+	Al cerrar el sistema, es init quien se encarga de matar todos los procesos restantes, desmontar todos los sistemas de archivos y por último detener el procesador.
+
+d.- Runlevels: Se encuentran definidos en /etc/inittab. Un nivel de ejecución es un estado de init y de la totalidad del sistema, y define que servicios están operando.
+	* Runlevels: El/Los niveles de ejecución en los que se realiza la acción.
+
+e.- Existen 7 tipos de Runlevels, y permiten iniciar un conjunto de procesos al arranque ó apagado del sistema.
+	Según el estándar:
+		* 0: halt(Parar el sistema)
+		* 1: Single User Mode ( Para tareas especiales de administración).
+		* 2: Multiuser without NFS (Modo multiusuario sin soporte de red)
+		* 3: Full Multiuser Mode Console (Modo multiusuario completo por consola)
+		* 4: No se utiliza.
+		* 5: X11 (Modo multiusuario completo con login gráfico basado en X)
+		* 6: reboot (Reiniciar el sistema).
+	El runlevel por defecto es el 2 (se configura en /etc/inittab).
+
+f.- EL proceso init inicia los procesos mediante la lectura de la información del archivo /etc/inittab. Los procesos que se ejecutan en cada nivel de ejecución se indican en este fichero.
+	Este archivo define estos puntos importantes para el proceso init:
+		*Que el proceso init se reiniciará.
+		*Qué procesos de deben iniciar, supervisar y reiniciar si se terminan.
+		*Qué acciones se deben realizar cuando el sistema ingresa a un nuevo nivel de ejecución.
+	El archivo está formado por líneas divididas en campos separados por el caracter ':'. El formato de las l'ineas del fichero es:
+		*id:nivelesEjecucion:accion:proceso .
+
+g.- Para pasar de un Runlevel <X> a uno <Y>, basta con usar el comando 'init x' siendo 'x' el número del runlevel al que se quiera pasar.
+
+h.- Los scripts RC(Run Control) se encargan de cargar o cerrar los servicios necesarios para que el sistema funcione, de acuerdo con el runlevel que se está iniciando. Los servicios a cargar se encuentran en el directorio /etc/rcX.d/ ; (X es el runlevel a cargar); en /etc/rcX.d hay enlaces simbólicos a /etc/init.d/ .
+	Existe un orden para llamar a los scrips ubicados en /etc/rcX.d; cuando el proceso init se ejecuta, llamará al script RC dependiendo del Runlevel por defecto. Y el script RC ejecutará todos los programas en dicho script.
+		*Primero ejecutará los que empiezan por K, llamando al programa que apuntan pasandole el parámetro "stop".
+		*Después de parar todos los servicios que lo necesitan, empezará por todos los que empiecen con S, pasando como parámetro "start".
+		*Los números entre la letra (S ó K) y el nombre del programa establecen el orden, empezando a ejecutarse secuencialmente aquellos con números menores y terminando en 99.
+
+i.- Insserv: Una herramienta para organizar la secuencia de arranque usando las dependencia de los scripst LSB(Linux Standard Base) de /etc/init.d .
+	Insserv se utiliza para administrar el orden de los enlaces simbólicos de /etc/rcX.d , resolviendo las dependencias de forma automática. Utiliza cabeceras en los scripts del /etc/init.d que permitan especificar la relacion con otros scripts RC (LSBInit).
+
+j.- Upstart es el reemplazo de SystemV.
+
+k.-Las principales diferencias entre SystemV y Upstart son:
+	*Permite la ejecución de trabajos en forma asincrónica a través de eventos (event-based) como principal diferencia con sysVinit que es estrictamente sincrónico (dependency-based).
+	*No existe el archivo /etc/inittab .
+
+l.- Lo que reemplaza a los Scrips RC en el proceso Upstart son Jobs.	
+	*Los trabajos (que permite el proceso Upstart ejecutarlos de forma asincrónica) se denominan Jobs.
+	*El principal objetivo de un job es definir servicios o tareas a ser ejecutadas por init.
+	*Son scripts de texto plano que definen las acciones/tareas (unidad de trabajo) a ejecutar ante determinados eventos.
+	*Cada job es definido en el /etc/init(.conf)
+	* Suelen ser de dos tipos:
+		*Task: ejecución finita > Not respawning > exit 0 ó uso de stop.
+		*Service_ ejecución indeterminada > Respawning.
+	*Los jobs son ejecutados ante eventos (arranque del equipo, inserción de un dispositivo USB, etc).
+
+m.-	#MySQL Service			;Header del Job.
+
+	description	"MySQL Server"	;descripción del job.
+	author	"info autor"		;autor del job.
+	
+	start on (net-device-up		;Condiciones de inicio del Job
+	     and local-filesystems	;
+	     and runlevel [2345])	;
+	stop on runlevel [016]		;Condición de stop para el job.
+
+	[...]
+	exec /usr/sbin/mysquld		;Ejecuta...
+	[...]
+
+n.- SystemD es un sistema que centraliza la administración de demonios y librerias del sistema.
+	* Mejora el paralelismo de booteo.
+	* Puede ser controlado por Systemctl.
+	* Compatible con SysV > si es llamado como init.
+	* El demonio systemd reemplaza al proceso init (éste pasa a tener PID 1).
+	* Los runlevels son reemplazados por targets.
+	* Al igual que con Upstart el archivo /etc/inittab no existe mas.
+
+o.- Activación por Socket: 
+	* Es un mecanismo de iniciación bajo demanda. Podemos ofrecer una variedad de servicios sin que realmente esten iniciados.
+	* Cuando el socket recibe una conexión, 'spawnea' el servicio.
+	* No hay necesidad de definir dependencias entre servucios, debido a que se inician todos los sockets en primer medida.
+
+p.- Cgroups.
+	* Permite organizar un grupo de procesos en forma jerárquica.	
+	* Agrupa conjunto de procesos relacionados.
+	* Tareas que realiza: 
+		* Tracking grupal . No utiliza el PID.
+		* Limitar el uso de recursos.  
+
+===================
+3)Usuarios
+
+
+a.- Los archivos que son utilizados para guardar información de los usuarios del sistema son:
+
+	* /etc/passwd : Guarda información de la cuentas de usuarios, asi como las clave de acceso y privilegios. Ejemplo:
+
+		usuario1:FXWUuZ.vwXttg:500:501:usuario pepito:/home/usuario1:/bin/bash
+	
+		* usuario1: Nombre de la cuenta (Login).
+		* FXWUuZ.vwXttg: Clave de acceso encriptada (password).
+		* 500: UID de eta cuenta.
+		* 501: GID del grupo principal al que pertenece la cuenta.
+		* usuario pepito: Nombre del usuario.
+		* /home/usuario: Directorio de trabajo del Usuario.
+		* /bin/bash: Interprete de comando (shell) de usuario propio.
+
+	* /etc/group : Contiene los nombre de los grupos y una lista de los usuarios que pertenecen a cada grupo. Cada línea representa un grupo y contiene 4 campos:
+		
+		* El nombre del grupo.
+		* La contraseña cifrada o bien una 'x' que indica la existencia de un archivo gshadow.
+		* El número de GID
+		* Lista de los miembros del grupo, separados por comas (sin espacios).
+
+	* etc/shadow : En este fichero se almacena las contraseñas cifradas y nos da información sobre caducidad y validez de la cuenta.
+		
+		<nombreUsuario><password cifrado><1><2><3><4><5><6> .
+
+b.- Las siglas UID hacen referencia a User ID; Las sigla GID hacen referencia a Group ID.
+	No, no pueden existir UID's iguales en el sistema, porque se le asigna una UID única para cada Usuario. 
+
+c.- El usuario 'root' es el SuperUsuario, tiene una UID única que es la 0, así sólo un Super Usuario puede haber en el sistema.
+
+d.-
+
+e.-
+
+===================
+4)FileSystem 
+
+a.- Los permisos en GNU/Linux se aplican a directorios y archivos. Existen 3 tipos de permisos y se basan en una notación octal.
+	* Permisos de: 
+		* Lectura. Valor: R . Octal: 4 .
+		* Escritura. Valor: W . Octal: 2 . 
+		* Ejecución. Valor: X . Octal: 1 .
+	Estos permisos se aplican sobre los Usuarios:  
+		* Usuario: Permisos de dueño -> U .
+		* Usuario: Permisos de Grupo -> G .
+		* Usuario: Permisos de otros usuarios -> O .
+
+c.- El comando chmod, al utilizarlo, e asigna un número en notación octal, que lo que hacen es definir, que permisos tienen los diferentes usuarios sobre archivos y directorios.
+
+d.- El único usuario que puede acceder a un archivo sin que tenga permisos es el Super Usuario ó usuario root.
+
+e.- * Full Path Name: Directorio completo, desde el directorio raíz ('/').
+    * Relative Path Name: Directorio del archivo desde la carpeta que estamos posicionados. Por ej.: /Home/jorch/Documentos/iso.txt .
+
+f.- Con el comando "pwd" se puede determinar el full path del directorio en el cual nos encontramos.
+	Sí, utilizando el comando "cd" sin ningun parámetro, se posiciona automáticamente a la carpeta personal del usuario.
+g.-
+
+===================
+5)Procesos
+
+a.- Un proceso es un programa en ejecución. Es dinámico, tiene Program Counter, y su ciclo de vida comprende desde que se lo "dispara" hasta que termina.
+	* PID: Process ID. Es única por proceso desde que se lo "dispara".
+	* PPID: Parent Process ID. A cada proceso se le asigna un PPID, porque tienen procesos padres, cada proceso hijo tiene la PID del proceso padre (PPID).
+    Sí, todos los procesos tienen estos atributos. Otros atributos son:
+	* Identificación del Usuario que lo "disparó".
+	* Si hay estructura de grupos, grupo que lo disparó.
+	* En ambientres multiusuario, desde que terminal y quien lo ejecuto.
+
+c.-	* Foregorund: Un proceso/programa en foreground lanzado desde la terminal monopoliza dicho terminal, en principio, no proremos ejecutar ningun otro programa a la vez.
+	* background: Un proceso/programa en background una vez iniciado, deja de monopolizar la terminal desde que se lanzó, y la terminal nos vuelve a mostrar el promt.
+	
+d.- Por defecto cuando uno ejecuta un comando en la terminal se hace en foreground, pero si se quiere que el proceso se haga en segundo plano (background), hay que poner un '&' luego del comando o proceso/programa que se quiera ejecutar.
+	* Para pasar de un proceso que está trabajando en background a foreground, lo que hay que hacer es :
+		* fg PID (PID del proceso que se quiere 'mover' de estado)
+	* Para pasar de un proceso que se está ejecutando en foreground a background lo que hay que hacer es : 
+		* bg PID (PID del proceso que se quiere 'mover' a background).
+		* Otra opción es apretar las teclas Ctrl-z , pero esto inhabilitaria el proceso solamente.
+
+e.- El Pipe ('|') nos permite comunicar dos procesos por medio de un pipe o tubería desde la shell. El pipe conecta stdout (salida estándar) del primer comando con la stdin (entrada estándar del segundo). Por ejemplo:
+	* ls | more
+	* ls -l | grep a | cut d- f1 
+
+f.- Las redirecciones son utilizadas para volcar la salida estándar (stdout) de comandos o procesos a un archivo.
+  Existen dos tipos de redirecciones: 
+	* Destructiva: Se utilizan estas redirecciones con '>', si el archivo de destino no existe, se lo crea. Si existe, sobreescribe el contenido.
+	* No destructiva: Se utilizan estas redirecciones con '>>', si el archivo destino no existe, se lo crea. Si existe, se agrega la información al final.
+
+g.-
+
+h.-
+
+
+
+ 
+
+	
+
+
