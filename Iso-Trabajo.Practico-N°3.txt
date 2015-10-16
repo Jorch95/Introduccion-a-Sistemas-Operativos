@@ -1,0 +1,72 @@
+Scripting
+
+
+=============
+
+)Arreglos
+
+Creación:
+	* arreglo_a=() #Se crea vacio.
+	* arreglo_b=(1 2 3 5 8 13 21) #Se crea inicializado.
+
+Asignar un valor a una posición concreta:
+	* arreglo_b[2]=spam
+
+Acceso al valor de un arreglo:
+	* echo ${arreglo_b[2]} #Las llaves ('{}') son obligatorias. Imprime el contenido en la posición 2 del arreglo.
+	* copia=${arreglo_b[2]} #Se copia el valor de la posición 2 del arreglo a la variable 'copia'.
+
+Acceso a todos los valores de un arreglo:
+	* echo ${arreglo[@]} #Se imprimen todos los valores dentro del arreglo.
+	* echo ${arreglo[*]} #Lo mismo que arriba.
+
+Tamaño de un arreglo: 
+	* ${#arreglo[@]}
+	* ${#arreglo[*]}
+
+Borrado de un elemento (No elimina la posición, solamente la deja vacía):
+	* unset arreglo[2]
+
+============
+
+)Funciones
+
+Se pueden declarar de 2 formas: 
+	* function nombre {block}
+	* nombre() {block}
+Ejemplo:
+
+#Recibe 2 argumentos y devuelve:
+# 1 si el primero es mayor, ó 0 en caso contrario.
+	mayor(){
+		echo"Se van a comparar los valores $*"
+		if [ $1 -gt $2 ]; then
+			echo "$1 es el mayor"
+			return 1
+		fi
+		echo "$2 es el mayor"
+		return 0
+	}
+
+
+Invocación de la función: 
+	* mayor 5 6 #Se invoca de esta forma y se le pasa como parámetro '5' y '6' respectivamente.
+	* echo $? #Luego de la invocacion de la funcion, imprime el resultado de la misma.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
