@@ -45,10 +45,56 @@ Comandos de Linux
 	* mv -i : Pregunta por cada archivo a sobreescribir antes de hacerlo.
 	* mv -v : Muestra el nombre de cada archivo a ser movido.
 
+*passwd [opciones] : Cambia la contraseña del usuario.
 
+*who [opcines] [archivo] : Lista los nombres de usuarios conectados actualmente, su terminal, el tiempo que han estado conectado, y el nombre del host desde el que se han conectado.
+	* who am i : Muestra el nombre de usuario de quien lo invoca. El 'am' y 'i' deben ir separados.
+	* who -b : Muestra la hora del ultimo arranque del sistema.
+	* who -d : Muestra los procesos muertos.
+	* who -H : Muestra los encabezados de columna encima de la salida.
+	* who -i : Incluye el tiempo parado como HORAS:MINUTOS. Un tiempo parado de . intica actividad en el último minuto.
+	* who -m : Igual que who am i.
+	* who -q : Muestra solo los nombres de usuario y la cuenta de usuarios activos.
+	* who -T,-w : Incluir el mensaje de estado del usuario en salida.
 
+* su(substitute user): Sirve para cambiar de usuario, o para pasar a Super Usuario.
 
+* chmod(change mode) [opciones] [MODE] dichero/directorio: Es una llamada al sistema, que permite cambiar los permisos de acceso de un fichero o directorio.
 
+* chown(Change Owner) [opciones] nuevo_usuario nombre_de_archivo/directorio : Se usa para cambiar el propietario/usuario del archivo o directorio. Es un comando de administrado, solo el usuario root puede cambiar el propietario de un archivo o directorio.
+	* chown -R : Cambia el permiso en archivos que esten en subdirectorios del directorio en el que estes en ese momento.
+	* chown -c : Cambia el permiso para cada archivo.
+	* chown -f : Previene a chown de mostrar mensajes de error cuando es incapaz de cambiar la titularidad del archivo.
+
+* chgrp(Change Group) [opciones] nuevo_grupo nombre_de_archivo : Se usa para cambiar el grupo de un archivo o directorio. Es un comando de administrados. Solo el usuario root puede cambiar el grupo de un archivo o directorio.
+	* chgrp -R : Cambia el permiso en archivos que esten en subdirectorios del directorio en el que estes en ese momento.
+	* chgrp -c : Cambia el permiso para cada archivo.
+	* chgrp -f : Forzar. No informar errores.
+
+* ps(Process Status) [opciones] : Se usa para informar del estado del proceso.
+	* ps -a : Listar informacion sobre todos los procesos mas frecuentes solicitados: todos excepto los lideres de grupo de procesos y los procesos no asociados con una terminal.
+	* ps -A : Lista informacion sobre todos los procesos.
+	* ps -d : Lista informacion sobre todos los procesos excepto los lideres de sesion.
+	* ps -e : Lista informacion sobre todos los procesos en ejecucion.
+	* ps -f : Genera un listado completo.
+	* ps -j : Mostrar identificador de sesión y de grupo de proceso.
+	* ps -l : Genera un listado largo.
+
+* pstree [opciones] : Muestra en vista de arbol una lista de los procesos en ejecucion.
+
+* top : es una herramienta que nos proporciona informacion de los procesos que se estan corriendo en ese momento en timepo real con valores de uso de CPU, memorioa, swap, u la posibilidad de manipular procesos.  Presenta una interfaz simple que cuenta con varias partes.
+
+* kill [-s][-l] %pid : Se usa para detener procesos en segundo plano.
+	* kill -s : Especifica la señal a enviar. La señal puede ser un nombre de señal o un numero.
+	* kill -l : Escribe todos los valores de señal soportados por la implementacion, si no se da ningun operando.
+	* kill -pid : Identificador de proceso o trabajo.
+	* kill -9 : Fuerza el kll de un proceso.
+
+* killall : Mata un proceso usando su nombre. En el caso de que haya mas de una instancia de ese programa ejecutandose, se cerrarán todas.
+
+* nice : Ejecuta un comando con una prioridad determinada, o modifica a prioridad de un proceso. Utiliza una prioridad variable que parte de la prioridad del shell y suma o resta valores. Mientras menor es el valor de la prioridad, mayor prioridad tiene el proceso.
+	* nice -n prioridad[comando]
+	Ejemplo: mice -n -5 find. //El valor de la prioridad del proceso find decrece en 5, aumentando su prioridad.
 
 
 
