@@ -1,4 +1,4 @@
-Trabajo Practico N°1 - Introduccion a GNU/Linux
+﻿Trabajo Practico N°1 - Introduccion a GNU/Linux
 ==================================================
 
 1) Características de GNU/Linux
@@ -63,13 +63,25 @@ a.-El Siste de Archivos o File System organiza la forma en que se almacenan los 
 b.-El Sistema de archivos adoptado por GNU/Linux es el Extended(ext3, ext4, etc).
 c.-Sí, es posible visualizar particiones del tipo FAT y NTFS en GNU/Linux.
 d.-Estructura básica de los File System de GNU/Linux: 
-	*/ Tope de la estructura de directorios
-	*/home Se almacenan archivos de Usuario.
-	*/var Informacion que varia de tamaño (logs, BD, spools).
-	*/etc Archivos de configuracion.
-	*/bin Archivos binarios y ejecutables.
-	*/dev Enlace a dispositivos.
-	*/usr Aplicaciones de usuario.
+	*/ : Tope de la estructura de directorios
+	*/bin : Archivos binarios y ejecutables.
+	*/dev : Enlace a dispositivos.
+	*/etc : Archivos de configuracion.
+	*/lib : Librerias esenciales compartidas y modulos del Kernel.
+	*/mnt : Punto de montaje para mostrar filesystems temporarios.
+	*/opt : Paquetes de software de aplicacion agregados.
+	*/sbin : Programas binarios esenciales del sistema.
+	*/srv : Datos para servicios provistos por el sistema.
+	*/tmp : Archivos temporarios.
+	*/var : Informacion que varia de tamaño (logs, BD, spools). 
+	*/home : Se almacenan archivos de Usuario.
+	*/root : directorio home del root.
+	*/proc : soporta los procesos.
+	
+	
+	
+	
+	*/usr : Aplicaciones de usuario.
 La sigla FHS hace referencia a: File Hierarchy Standard.
 
 ==================================================
@@ -92,9 +104,11 @@ c.- Para instalar GNU/Linux, la cantidad necesaria de particiones para instalarl
 		*/dev/hda3: / (ext3 ó ext4) (Partición Primaria)
 		*/dev/hda4: Área de Intercambio (SWAP) (Partición lógica)
 
-e.-Para particionar discos existen dostwares destructivos y no-destructivos.
+e.-Para particionar discos existen softwares destructivos y no-destructivos.
 	Destructivos: Permiten crear y eliminar particiones. Por ejemplo fdisk.
 	No-Destructivos: Permiten crear, eliminar y modificar particiones. Por ejemplo: fips, gparted.
+
+==================================================
 
 8)Arranque de un Sistema Operativo
 a.- BIOS: Basic Input/Output System (Sistema Básico de Entrada Salida). Es un firmware que localiza el SO en la memoria RAM, brinda una comunicación de muy bajo nivel y configuración del Hardware de nuestra computadora. El BIOS contiene las instrucciones más elementales para que puedan funcionar y desempeñarse adecuadamente, pueden incluir rutinas básica de control de los dispositivos.
@@ -137,4 +151,4 @@ i.-Sí, es posible tener en nuestra PC instalado GNU/Linux y otro Sistema Operat
 
 ==================================================
 
-9)Archivos
+

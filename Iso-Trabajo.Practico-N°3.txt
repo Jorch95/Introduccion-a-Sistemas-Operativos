@@ -1,7 +1,51 @@
 Scripting
 
+1) ¿Que puedo hacer con shell scripts? 
+	* Automatizacion de tareas.
+	* Aplicaciones interactivas.
+	* Aplicaciones con interfaz grafica.
+  ¿Por que shell Script ? 
+	* Practico para manejar archivos
+	* Extremadamente simple para crear procesos y manipular sus salidas.
+	* Independiente de la plataforma.
+	* Funciona con cualquier sistema operativo tipo unix.
+	* Se puede probar en la shell.
+=============
+)Estructuras de control
+
+* if : 
+	if [condicion]; then
+		exit 1
+	else
+		echo "algo"
+	fi
+	exit 0
+
+* for : 
+	for ((i=0; i<10; i++)) 
+	do
+		block
+	done
+
+	for i in value1 value2 value3 valueN;
+	do
+		block
+	done
+	
+* while: 
+	while [condicion] 
+	do
+		block
+	done
+
+* until: 
+	until [condicion] #Mientras NO se cumpla la condicion	
+	do
+		block
+	done
 
 =============
+
 
 )Arreglos
 
@@ -26,6 +70,17 @@ Tamaño de un arreglo:
 
 Borrado de un elemento (No elimina la posición, solamente la deja vacía):
 	* unset arreglo[2]
+
+============
+
+)Argumentos y valor de retorno
+  Los scripts pueden recibir argumentos en su invocacion. Para accederlos, se utilizan variables especiales:
+	* $0 contiene la invocacion al script.
+	* $1,$2,$3,... contienen cada uno de los argumentos.
+	* $# contiene la cantidad de argumentos recibidos.
+	* $* contiene la lista de todos los argumentos.
+	* $? contiene en todo momento el valor de retorno del ultimo comando ejecutado.
+	
 
 ============
 

@@ -1,4 +1,4 @@
-Comandos de Linux
+﻿Comandos de Linux
 ============================================================
 
 *cd(change directory): cd <ruta> : Cambiar de directorio.
@@ -6,6 +6,22 @@ Comandos de Linux
 *mkdir(make directory): mkdir <ruta> : Crea directorios.
 
 *rmdir(remove dir):rmdir <ruta> :  Permite eliminar directorios vacios.
+
+*find ruta [opciones] : Encuentra uno o mas archivos asumiendo que conoces su nombre aproximado.
+	* find -name : Busca dicho archivo, en el directorio actual o en cualquier subidirectorio.
+	* find -atime n : Verdadero si se accedió al archivo hace n dias. El tiempo de acceso de los directorios en la ruta se cambia por el find mismo.
+	* find -ctime n : Verdadero si el estado del archivo se cambio hace n  dias.
+	* find -group gname : Verdadero si el archivo pertenece al grupo gname. Si gname es numerico y no aparece en el archivo /etc/group, dr yoma como identificador del grupo.
+	* find -mtime n : Verdadero si la informacion del archivo fue modificada hace n dias.
+	* find -size n[c] : Verdadero si el archivo tiene n bloques de largo (512 octetos por bloque). Si n va seguida de una c, el tamañano es en octetos.
+
+*file [opciones] nombre_de_archivo/directorio : El comando file te dice si el objeto que ves es un directorio o un archivo.
+	* file -c : Comprobar el archivo magico para errores de formato. Por razones de eficiencia, esta validación no se lleva a cabo.
+	* file -h : No sigue enlaces simbólicos.
+	* file -m : Utiliza mfile como archivo magico alternativo.
+	* file -f : ffile contiene una lista de los archivos a examinar.
+
+*man(manual) nombre_comando [opciones] : Proporciona informacion sobre el comando solicitado o permite a los usuarios mbuscar relacionados con un determinada palabra clave.
 
 *mount(): Monta dispositivos de almacenamiento en particiones indicadas.
 
