@@ -10,6 +10,8 @@ Scripting
 	* Independiente de la plataforma.
 	* Funciona con cualquier sistema operativo tipo unix.
 	* Se puede probar en la shell.
+
+  Los scripts no se compilan, son interpretados por un intérprete.
 =============
 )Estructuras de control
 
