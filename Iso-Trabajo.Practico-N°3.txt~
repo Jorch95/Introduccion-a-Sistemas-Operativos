@@ -60,9 +60,9 @@ Scripting
 		{block}
 	done
 
-* break [n] : Corta el loop que se este produciendo. Si se especifica 'n' termina n ciclos anidados.
+* break : Corta el loop que se este produciendo.
 
-* continue [n]: Salta una iteracion dentro de un loop. Si se especifica 'n' retoma en el n-esimo ciclo siguiente.
+* continue: Salta una iteracion dentro de un loop.
 
 =============
 
