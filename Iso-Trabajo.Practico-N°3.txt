@@ -60,9 +60,9 @@ Scripting
 		{block}
 	done
 
-* break [n] : Corta el loop que se este produciendo. Si se especifica 'n' termina n ciclos anidados.
+* break : Corta el loop que se este produciendo.
 
-* continue [n]: Salta una iteracion dentro de un loop. Si se especifica 'n' retoma en el n-esimo ciclo siguiente.
+* continue: Salta una iteracion dentro de un loop.
 
 =============
 
@@ -140,7 +140,19 @@ Invocación de la función:
 	expr arg1 operation arg2
 		*Se pueden efectuar las operaciones matematicas comunes y tambien '%' que seria el resto de una division; ademas la division es entera y no decimal.
 
+10) ¿Qué tipo de variables existen? }
+	Existen variables globales, locales y de entorno.
+		*Por defecto, las variables son variables globales.
+		*Con el comando 'local' dentro de una función, se declara una variable local a la misma.
+		*Las variables de entorno son heredadas por los procesos hijos. 
+		*Para exponer una variable global a los procesos hijos se usa el comando 'export'.
 
+  ¿El Shell Script es furtemente tipado? No, no lo es. 
+  ¿Se pueden definir arreglos? Si, se pueden.
+
+11) ¿Pueden definirse funciones dentro de un script? Sí, se puede.
+
+12)
 
 
 
